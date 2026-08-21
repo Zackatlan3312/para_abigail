@@ -1,211 +1,292 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#F1ECEE" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#141018" media="(prefers-color-scheme: dark)">
-<meta name="description" content="Una disculpa para Abigail: me fui a ensayar y no le avisé.">
-<meta property="og:title" content="Perdón, Abigail">
-<meta property="og:description" content="Una disculpa, sin excusas.">
-<meta property="og:type" content="website">
-<title>Perdón, Abigail</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Para Abigail</title>
+<meta name="theme-color" content="#1B1526">
+<meta property="og:title" content="Quiero decirte algo">
+<meta property="og:description" content="Toca para leerlo.">
+<meta name="description" content="Una carta para Abigail.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Karla:wght@400;500;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Karla:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
+  /* ---------- paleta: noche tibia ---------- */
   :root{
-    --bg:#F1ECEE; --surface:#FBF8F9; --ink:#241E26; --muted:#6B6070;
-    --rule:#DBD1D6; --accent:#A83247; --accent-soft:rgba(168,50,71,.09);
-    --amber:#B08325; --shadow:rgba(36,30,38,.10);
-    --serif:"Fraunces",Georgia,"Times New Roman",serif;
-    --sans:"Karla","Helvetica Neue",Arial,sans-serif;
-    --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
-  }
-  @media (prefers-color-scheme:dark){
-    :root:not([data-theme="light"]){
-      --bg:#141018; --surface:#1C1722; --ink:#EFE7EC; --muted:#A698AC;
-      --rule:#332B3A; --accent:#F0899A; --accent-soft:rgba(240,137,154,.13);
-      --amber:#E0B65E; --shadow:rgba(0,0,0,.45);
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#141018; --surface:#1C1722; --ink:#EFE7EC; --muted:#A698AC;
-    --rule:#332B3A; --accent:#F0899A; --accent-soft:rgba(240,137,154,.13);
-    --amber:#E0B65E; --shadow:rgba(0,0,0,.45);
+    --noche:      #1B1526;
+    --noche-alta: #241C33;
+    --papel:      #F4EDE6;
+    --tenue:      #9A8CA6;
+    --lampara:    #E8B87F;
+    --rosa:       #C98A93;
+
+    --display: "Fraunces", Georgia, "Times New Roman", serif;
+    --texto:   "Karla", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 
-  *{box-sizing:border-box}
+  *{ box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+
+  html,body{ height:100%; }
+
   body{
-    margin:0; background:var(--bg); color:var(--ink);
-    font-family:var(--sans); font-size:17px; line-height:1.6;
-    -webkit-font-smoothing:antialiased;
+    background: var(--noche);
+    color: var(--papel);
+    font-family: var(--texto);
+    font-weight:300;
+    line-height:1.6;
+    min-height:100dvh;
+    overflow-x:hidden;
+    cursor:pointer;
   }
-  .hoja{max-width:37rem; margin:0 auto; padding:0 clamp(20px,6vw,40px) 72px; display:flex; flex-direction:column; gap:44px}
 
-  /* pentagrama */
-  .pentagrama{position:relative; height:64px; margin-top:28px; overflow:hidden}
-  .pentagrama .linea{position:absolute; left:0; right:0; height:1px; background:var(--rule)}
-  .pentagrama .linea:nth-child(1){top:16px} .pentagrama .linea:nth-child(2){top:24px}
-  .pentagrama .linea:nth-child(3){top:32px} .pentagrama .linea:nth-child(4){top:40px}
-  .pentagrama .linea:nth-child(5){top:48px}
-  .aguja{position:absolute; top:8px; width:2px; height:48px; background:var(--amber); opacity:.85; animation:barrer 3.4s cubic-bezier(.4,0,.2,1) .3s both}
-  .nota-suelta{position:absolute; top:26px; width:12px; height:9px; border-radius:50%; background:var(--accent); transform:rotate(-18deg)}
-  @keyframes barrer{from{left:0} to{left:calc(100% - 2px)}}
-
-  .eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0}
-  h1{
-    font-family:var(--serif); font-weight:600; font-size:clamp(38px,10.5vw,62px); overflow-wrap:break-word;
-    line-height:1.02; letter-spacing:-.02em; margin:14px 0 0; text-wrap:balance;
+  /* luz de lámpara: se mueve muy despacio, respira */
+  .luz{
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:
+      radial-gradient(58vmax 58vmax at 22% 18%, rgba(232,184,127,.13), transparent 62%),
+      radial-gradient(46vmax 46vmax at 88% 96%, rgba(201,138,147,.10), transparent 60%);
+    animation: respira 14s ease-in-out infinite alternate;
   }
-  h1 em{font-style:italic; color:var(--accent)}
-  .entrada p{margin:18px 0 0; font-size:19px; color:var(--ink)}
-  .entrada p.suave{color:var(--muted); font-size:17px}
-
-  section{border-top:1px solid var(--rule); padding-top:24px; display:flex; flex-direction:column; gap:14px}
-  section h2{font-family:var(--serif); font-weight:600; font-size:26px; letter-spacing:-.01em; margin:0; line-height:1.2}
-  section p{margin:0}
-
-  .agenda{list-style:none; margin:6px 0 0; padding:20px; background:var(--surface); border:1px solid var(--rule); border-radius:4px; display:flex; flex-direction:column; gap:16px; box-shadow:0 1px 0 var(--shadow)}
-  .agenda li{display:grid; grid-template-columns:5.5rem 1fr; gap:4px 14px; align-items:baseline}
-  .agenda .cuando{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
-  .agenda .que{font-size:17px}
-  .agenda .nota{grid-column:2; font-size:14px; color:var(--muted)}
-  .agenda li.tachado .que{text-decoration:line-through; text-decoration-color:var(--accent); text-decoration-thickness:2px; color:var(--muted)}
-  .agenda li.tachado .nota{color:var(--accent)}
-
-  .promesas{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:16px}
-  .promesas li{padding-left:20px; border-left:2px solid var(--accent-soft); position:relative}
-  .promesas li::before{content:""; position:absolute; left:-4px; top:.62em; width:6px; height:6px; border-radius:50%; background:var(--accent)}
-  .promesas strong{font-weight:700}
-
-  .cita{font-family:var(--serif); font-size:23px; line-height:1.35; margin:0; text-wrap:balance}
-
-  .opciones{display:flex; flex-direction:column; gap:10px; margin-top:4px}
-  .opciones button{
-    font-family:var(--sans); font-size:16px; font-weight:500; text-align:left;
-    padding:15px 18px; border:1px solid var(--rule); border-radius:3px;
-    background:var(--surface); color:var(--ink); cursor:pointer;
-    transition:border-color .18s ease, transform .18s ease, background .18s ease;
+  @keyframes respira{
+    from{ transform:translate3d(0,0,0) scale(1); opacity:.85; }
+    to  { transform:translate3d(0,-2.5%,0) scale(1.08); opacity:1; }
   }
-  .opciones button:hover{border-color:var(--accent); transform:translateX(3px)}
-  .opciones button[aria-pressed="true"]{border-color:var(--accent); background:var(--accent-soft)}
-  button:focus-visible,a:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
 
-  .respuesta{margin:0; min-height:1.6em; font-family:var(--serif); font-size:20px; line-height:1.4; color:var(--accent)}
-  .wa{display:none; align-self:flex-start; font-family:var(--mono); font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); text-decoration:none; border-bottom:2px solid var(--accent); padding-bottom:3px}
-  .wa.visible{display:inline-block}
+  .hoja{
+    position:relative; z-index:1;
+    min-height:100dvh;
+    display:flex; flex-direction:column;
+    padding: max(2.2rem, env(safe-area-inset-top)) 1.6rem
+             calc(6.5rem + env(safe-area-inset-bottom));
+    max-width: 34rem; margin-inline:auto;
+  }
 
-  .firma{border-top:1px solid var(--rule); padding-top:24px; display:flex; flex-direction:column; gap:10px}
-  .firma .cierre{font-family:var(--serif); font-size:28px; line-height:1.2; margin:0}
-  .firma .pie{font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:0}
+  .membrete{
+    font-size:.68rem; letter-spacing:.24em; text-transform:uppercase;
+    color:var(--tenue); font-weight:400;
+    padding-bottom:2.6rem; flex-shrink:0;
+  }
+  .membrete b{ color:var(--lampara); font-weight:400; }
 
-  .aparece{animation:subir .7s ease both}
-  .aparece:nth-child(1){animation-delay:.05s} .aparece:nth-child(2){animation-delay:.13s}
-  .aparece:nth-child(3){animation-delay:.21s} .aparece:nth-child(4){animation-delay:.29s}
-  .aparece:nth-child(5){animation-delay:.37s} .aparece:nth-child(6){animation-delay:.45s}
-  @keyframes subir{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
-  @media (prefers-reduced-motion:reduce){
-    .aparece,.aguja{animation:none}
-    .aguja{left:calc(100% - 2px)}
-    .opciones button{transition:none}
+  .carta{
+    flex:1;
+    display:flex; flex-direction:column; justify-content:center; gap:1.35rem;
+  }
+
+  /* ---------- las líneas ---------- */
+  .linea{
+    opacity:0; transform:translateY(10px);
+    transition: opacity 1.1s ease, transform 1.1s cubic-bezier(.2,.7,.3,1), color .9s ease;
+    font-size:1.16rem; color:var(--papel);
+  }
+  .linea.vista{ opacity:1; transform:none; }
+  .linea.atras{ opacity:.32; }
+
+  .linea.saludo{
+    font-family:var(--display); font-weight:300;
+    font-size: clamp(2.4rem, 13vw, 3.4rem);
+    line-height:1.05; letter-spacing:-.02em;
+    color:var(--papel);
+  }
+  .linea.peso{
+    font-family:var(--display); font-weight:300;
+    font-size: clamp(1.9rem, 9.5vw, 2.6rem);
+    line-height:1.15; color:var(--lampara);
+    padding-block:.4rem;
+  }
+  .linea.atras.peso{ opacity:.4; }
+
+  /* ---------- cierre ---------- */
+  .cierre{
+    opacity:0; transform:translateY(10px);
+    transition:opacity 1.1s ease, transform 1.1s cubic-bezier(.2,.7,.3,1);
+    padding-top:1.4rem; display:none;
+  }
+  .cierre.vista{ opacity:1; transform:none; }
+
+  .pregunta{
+    font-family:var(--display); font-size:1.4rem; font-weight:300;
+    color:var(--papel); padding-bottom:1.3rem;
+  }
+
+  .botones{ display:flex; flex-wrap:wrap; gap:.7rem; }
+
+  button{
+    font-family:var(--texto); font-size:.95rem; font-weight:400;
+    padding:.85rem 1.4rem; border-radius:2rem; cursor:pointer;
+    border:1px solid rgba(244,237,230,.22);
+    background:transparent; color:var(--papel);
+    transition:background .3s ease, border-color .3s ease, transform .2s ease;
+  }
+  button:active{ transform:scale(.97); }
+  button.principal{
+    background:var(--lampara); border-color:var(--lampara); color:#231A12; font-weight:500;
+  }
+  button:focus-visible{ outline:2px solid var(--rosa); outline-offset:3px; }
+
+  .respuesta{
+    display:none; padding-top:.3rem;
+    animation: entra 1s ease both;
+  }
+  .respuesta p{ font-size:1.1rem; color:var(--papel); padding-bottom:1.2rem; }
+  .respuesta .firma{
+    font-family:var(--display); color:var(--rosa); font-size:1.05rem;
+    padding-top:1.6rem; opacity:.9;
+  }
+  @keyframes entra{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;} }
+
+  .wa{
+    display:inline-block; text-decoration:none;
+    font-size:.95rem; padding:.85rem 1.4rem; border-radius:2rem;
+    background:var(--lampara); color:#231A12; font-weight:500;
+  }
+
+  /* ---------- pista de "toca" ---------- */
+  .pista{
+    position:fixed; left:0; right:0;
+    bottom: calc(1.6rem + env(safe-area-inset-bottom));
+    z-index:2; display:flex; justify-content:center;
+    transition:opacity .6s ease;
+  }
+  .pista button{
+    border:none; background:none; padding:.6rem 1rem;
+    color:var(--tenue); font-size:.72rem;
+    letter-spacing:.2em; text-transform:uppercase;
+    animation: latido 2.6s ease-in-out infinite;
+  }
+  @keyframes latido{ 0%,100%{opacity:.45;} 50%{opacity:.95;} }
+  .pista.oculta{ opacity:0; pointer-events:none; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition-duration:.01ms !important; }
+    .linea, .cierre{ transform:none; }
   }
 </style>
 </head>
 <body>
+
+<div class="luz"></div>
+
 <main class="hoja">
-  <header class="entrada aparece">
-    <div class="pentagrama" aria-hidden="true">
-      <span class="linea"></span><span class="linea"></span><span class="linea"></span><span class="linea"></span><span class="linea"></span>
-      <span class="nota-suelta" style="left:18%"></span>
-      <span class="nota-suelta" style="left:41%; top:34px"></span>
-      <span class="nota-suelta" style="left:63%; top:22px"></span>
-      <span class="aguja"></span>
+  <div class="membrete">para <b>Abigail</b></div>
+
+  <div class="carta" id="carta">
+    <!-- ==========================================================
+         AQUÍ SE CAMBIA EL TEXTO. Cada <p> es una línea que aparece
+         con un toque. Puedes borrar líneas, agregar o cambiarlas.
+         class="saludo" = letra grande del inicio
+         class="peso"   = la línea más importante (dorada)
+         ========================================================== -->
+    <p class="linea saludo">Abigail:</p>
+    <p class="linea">Me fui al ensayo y no te avisé. Así de simple, y así de mal.</p>
+    <p class="linea">No fue nada más que se me pasó. Te dejé esperando, sin saber dónde andaba ni a qué hora iba a volver, y eso no se vale.</p>
+    <p class="linea">No vengo a decirte que el ensayo era importante. Avisarte también lo era, y me tomaba diez segundos.</p>
+    <p class="linea peso">Perdóname.</p>
+    <p class="linea">De aquí en adelante te aviso antes, no después: cuándo entro y a qué hora salgo, sin que me lo tengas que preguntar.</p>
+    <p class="linea">Cuando tú estés lista, aquí voy a estar.</p>
+  </div>
+
+  <div class="cierre" id="cierre">
+    <p class="pregunta">¿Te late si platicamos?</p>
+    <div class="botones">
+      <button class="principal" id="btnSi">Sí, hablemos</button>
+      <button id="btnNo">Todavía no</button>
     </div>
-    <p class="eyebrow">Una disculpa, sin excusas</p>
-    <h1>Perdón, <em>Abigail</em>.</h1>
-    <p>Me fui a ensayar y no te avisé. Por eso se nos cayó la salida, y eso fue mi culpa, no de la casualidad.</p>
-    <p class="suave">No te escribo esto para quedar bien. Te lo escribo porque quiero que veas que sí entendí qué fue lo que hice.</p>
-  </header>
 
-  <section class="aparece">
-    <p class="eyebrow">Lo que pasó</p>
-    <h2>Puse el ensayo encima de ti sin preguntarte.</h2>
-    <ul class="agenda">
-      <li>
-        <span class="cuando">Tarde</span>
-        <span class="que">Me metí al ensayo. Se alargó.</span>
-      </li>
-      <li class="tachado">
-        <span class="cuando">Después</span>
-        <span class="que">Nuestra salida</span>
-        <span class="nota">la cancelé yo, con mi silencio</span>
-      </li>
-      <li>
-        <span class="cuando">Toda la tarde</span>
-        <span class="que">Tú, esperando un mensaje que nunca te mandé.</span>
-      </li>
-    </ul>
-    <p>Tenía el celular en la mano varias veces. Un mensaje de diez segundos te habría ahorrado toda la tarde. No lo mandé, y eso no tiene defensa.</p>
-  </section>
-
-  <section class="aparece">
-    <p class="eyebrow">Lo que entiendo</p>
-    <h2>El problema no fue el ensayo.</h2>
-    <p>Fue que te dejé esperando sin saber nada. Fue que acomodaste tu día alrededor de un plan conmigo y yo lo cambié sin consultarte. Fue que te enteraste tarde, y por eso ya no dio tiempo de nada.</p>
-    <p class="cita">Si te sentiste en segundo lugar, no te lo estás inventando. Así se vio desde donde estabas tú.</p>
-  </section>
-
-  <section class="aparece">
-    <p class="eyebrow">Lo que voy a hacer</p>
-    <h2>Tres cosas, concretas.</h2>
-    <ul class="promesas">
-      <li><strong>Te aviso en cuanto sepa.</strong> No cuando ya empezó el ensayo: cuando me lo dicen. Aunque sea un mensaje de una línea.</li>
-      <li><strong>Si algo se atraviesa con un plan nuestro, te lo pregunto antes.</strong> El plan es de los dos; no me toca cambiarlo solo.</li>
-      <li><strong>Te repongo la salida con fecha.</strong> No un “un día de estos”. Tú dices el día y ahí voy a estar, sin ensayo de por medio.</li>
-    </ul>
-  </section>
-
-  <section class="aparece">
-    <p class="eyebrow">Tú eliges</p>
-    <h2>¿A dónde te llevo para reponerlo?</h2>
-    <div class="opciones" id="opciones">
-      <button type="button" data-respuesta="Cena entonces. Yo aparto la mesa y llego temprano, para variar.">Una cena, tranquilos</button>
-      <button type="button" data-respuesta="Cine. Tú escoges la película, aunque me toque la que sé que vas a elegir.">Al cine, tú escoges</button>
-      <button type="button" data-respuesta="La salida que quedó pendiente, tal cual la habíamos planeado. Se la debo al día que arruiné.">La salida que se quedó pendiente</button>
-      <button type="button" data-respuesta="Entonces dime tú. Lo que se te antoje, el día que tú digas.">Algo que se te antoje a ti</button>
+    <div class="respuesta" id="respSi">
+      <p>Gracias por darme el chance. Te escribo ahorita mismo.</p>
+      <a class="wa" id="linkWa" href="#">Contestar por WhatsApp</a>
+      <p class="firma">— Zack</p>
     </div>
-    <p class="respuesta" id="respuesta" role="status" aria-live="polite"></p>
-    <a class="wa" id="wa" href="#" target="_blank" rel="noopener">Contestarme por WhatsApp</a>
-  </section>
 
-  <footer class="firma aparece">
-    <p class="cierre">No quiero que se te olvide. Quiero que se me quite la costumbre.</p>
-    <p>Gracias por leer hasta aquí, Abigail. Perdón, de verdad.</p>
-    <p class="pie">Hecho para ti, y para nadie más</p>
-  </footer>
+    <div class="respuesta" id="respNo">
+      <p>Está bien. No hay prisa y no te voy a presionar. Gracias por leerlo hasta aquí.</p>
+      <p class="firma">— Zack</p>
+    </div>
+  </div>
 </main>
 
-<script>
-  (function(){
-    var opciones = document.getElementById('opciones');
-    var respuesta = document.getElementById('respuesta');
-    var wa = document.getElementById('wa');
-    var tel = (new URLSearchParams(location.search).get('tel') || '522299293609').replace(/[^0-9]/g,'');
+<div class="pista" id="pista">
+  <button id="btnSeguir" aria-label="Mostrar la siguiente línea">toca para seguir</button>
+</div>
 
-    opciones.addEventListener('click', function(e){
-      var boton = e.target.closest('button');
-      if(!boton) return;
-      Array.prototype.forEach.call(opciones.querySelectorAll('button'), function(b){
-        b.setAttribute('aria-pressed', String(b === boton));
-      });
-      respuesta.textContent = boton.dataset.respuesta;
-      if(tel){
-        wa.href = 'https://wa.me/' + tel + '?text=' + encodeURIComponent('Leí tu página. Elijo: ' + boton.textContent.trim());
-        wa.classList.add('visible');
-      }
+<script>
+  /* ============================================================
+     TU NÚMERO DE WHATSAPP (con lada de país, sin + ni espacios).
+     México: 52 + tu número. Ej: "522291234567"
+     Si lo dejas vacío, el botón de WhatsApp no aparece.
+     ============================================================ */
+  var MI_WHATSAPP = "522299293609";
+
+  var lineas  = Array.prototype.slice.call(document.querySelectorAll('.linea'));
+  var cierre  = document.getElementById('cierre');
+  var pista   = document.getElementById('pista');
+  var i = 0, terminado = false;
+
+  function siguiente(){
+    if (terminado) return;
+
+    if (i < lineas.length){
+      lineas.forEach(function(l){ if (l.classList.contains('vista')) l.classList.add('atras'); });
+      var linea = lineas[i];
+      linea.classList.add('vista');
+      linea.classList.remove('atras');
+      i++;
+      linea.scrollIntoView({ behavior:'smooth', block:'center' });
+      return;
+    }
+
+    // ya no hay líneas: mostrar el cierre
+    terminado = true;
+    lineas.forEach(function(l){ l.classList.add('atras'); });
+    cierre.style.display = 'block';
+    requestAnimationFrame(function(){
+      cierre.classList.add('vista');
+      cierre.scrollIntoView({ behavior:'smooth', block:'center' });
     });
-  })();
+    pista.classList.add('oculta');
+  }
+
+  document.addEventListener('click', function(e){
+    if (e.target.closest('button, a')) return;
+    siguiente();
+  });
+  document.getElementById('btnSeguir').addEventListener('click', siguiente);
+  document.addEventListener('keydown', function(e){
+    if (e.key === ' ' || e.key === 'Enter' || e.key === 'ArrowDown'){
+      if (document.activeElement && document.activeElement.tagName === 'BUTTON' &&
+          document.activeElement.id !== 'btnSeguir') return;
+      e.preventDefault(); siguiente();
+    }
+  });
+
+  function responder(quien){
+    document.getElementById('btnSi').parentNode.style.display = 'none';
+    document.getElementById(quien).style.display = 'block';
+    document.getElementById(quien).scrollIntoView({ behavior:'smooth', block:'center' });
+  }
+
+  document.getElementById('btnSi').addEventListener('click', function(){
+    var link = document.getElementById('linkWa');
+    if (MI_WHATSAPP){
+      link.href = "https://wa.me/" + MI_WHATSAPP +
+                  "?text=" + encodeURIComponent("Ya leí tu página. Sí, hablemos.");
+    } else {
+      link.style.display = 'none';
+    }
+    responder('respSi');
+  });
+
+  document.getElementById('btnNo').addEventListener('click', function(){
+    responder('respNo');
+  });
+
+  // primera línea sola, sin necesidad de tocar
+  setTimeout(siguiente, 700);
 </script>
+
 </body>
 </html>
