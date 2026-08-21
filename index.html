@@ -1,14 +1,211 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#ff4f91"><title>Para Abigail ❤️</title><style>*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#40122f,#120812 55%,#080408);color:#fff7fb;font-family:system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}.app{max-width:480px;margin:auto;min-height:100vh;padding:24px 18px 35px;display:flex;align-items:center}.screen{display:none;width:100%;animation:in .4s ease}.screen.active{display:block}.center{text-align:center}.badge{display:inline-block;padding:7px 12px;border-radius:999px;background:#ff4f9118;color:#ffb0ca;font-size:13px;font-weight:700}h1{font-size:39px;line-height:1.05;margin:14px 0}.script{font-family:cursive;color:#ff91b8;font-size:52px}p{font-size:17px;line-height:1.55;color:#d9bfcc}.card{background:#ffffff0c;border:1px solid #ff8fba33;border-radius:24px;padding:22px;margin:18px 0}.photo{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:25px;border:1px solid #ff72aa66;box-shadow:0 18px 55px #ff2d7c25;margin:14px 0}textarea{width:100%;min-height:230px;background:#100810;color:#fff;border:1px solid #ff72aa55;border-radius:18px;padding:16px;font:inherit;line-height:1.55;outline:none}button{width:100%;border:0;border-radius:16px;padding:16px;margin-top:12px;font-size:16px;font-weight:800}.primary{background:linear-gradient(90deg,#ff3f87,#ff79ab);color:#fff;box-shadow:0 10px 30px #ff3f8740}.ghost{background:#ffffff0d;color:#fff;border:1px solid #ffffff20}.small{font-size:13px;color:#a98d9c;text-align:center}@keyframes in{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}.heart{font-size:58px;animation:p 1.5s infinite}@keyframes p{50%{transform:scale(1.12)}}.dots{text-align:center;margin-top:20px}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#ffffff30;margin:4px}.dot.on{background:#ff4f91}</style></head><body><main class="app">
-<section class="screen active" id="s1"><div class="center"><span class="badge">Una pequeña carta para ti</span><h1>Para<br><span class="script">Abigail</span> ❤️</h1><img class="photo" src="foto.jpg" alt="Abigail"><p>Hay algo que quiero decirte de corazón.</p><button class="primary" onclick="go(2)">💗 Abrir mi disculpa</button></div></section>
-<section class="screen" id="s2"><div class="center"><div class="heart">💌</div><h1>Antes de decir nada…</h1><div class="card"><p>Me importas muchísimo y no quiero que una falta de comunicación te haga sentir que no eres importante para mí.</p></div><button class="primary" onclick="go(3)">Abrir la carta 💕</button></div></section>
-<section class="screen" id="s3"><span class="badge">Mi disculpa para Abigail</span><h1>Perdóname, mi amor.</h1><textarea id="msg">Abigail, quiero pedirte perdón por no haberte avisado que tenía un ensayo. Sé que debí decírtelo y entiendo que te haya podido hacer sentir mal. No estuvo bien de mi parte.
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F1ECEE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141018" media="(prefers-color-scheme: dark)">
+<meta name="description" content="Una disculpa para Abigail: me fui a ensayar y no le avisé.">
+<meta property="og:title" content="Perdón, Abigail">
+<meta property="og:description" content="Una disculpa, sin excusas.">
+<meta property="og:type" content="website">
+<title>Perdón, Abigail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Karla:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --bg:#F1ECEE; --surface:#FBF8F9; --ink:#241E26; --muted:#6B6070;
+    --rule:#DBD1D6; --accent:#A83247; --accent-soft:rgba(168,50,71,.09);
+    --amber:#B08325; --shadow:rgba(36,30,38,.10);
+    --serif:"Fraunces",Georgia,"Times New Roman",serif;
+    --sans:"Karla","Helvetica Neue",Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#141018; --surface:#1C1722; --ink:#EFE7EC; --muted:#A698AC;
+      --rule:#332B3A; --accent:#F0899A; --accent-soft:rgba(240,137,154,.13);
+      --amber:#E0B65E; --shadow:rgba(0,0,0,.45);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#141018; --surface:#1C1722; --ink:#EFE7EC; --muted:#A698AC;
+    --rule:#332B3A; --accent:#F0899A; --accent-soft:rgba(240,137,154,.13);
+    --amber:#E0B65E; --shadow:rgba(0,0,0,.45);
+  }
 
-No fue mi intención hacerte sentir que no te tomo en cuenta; simplemente me enfoqué en el ensayo y se me pasó avisarte. Aun así, sé que debí comunicarme contigo mejor.
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:17px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .hoja{max-width:37rem; margin:0 auto; padding:0 clamp(20px,6vw,40px) 72px; display:flex; flex-direction:column; gap:44px}
 
-Te quiero muchísimo, Abigail. ❤️ Eres una persona muy importante para mí y no quiero que una tontería así haga que te sientas menos querida.
+  /* pentagrama */
+  .pentagrama{position:relative; height:64px; margin-top:28px; overflow:hidden}
+  .pentagrama .linea{position:absolute; left:0; right:0; height:1px; background:var(--rule)}
+  .pentagrama .linea:nth-child(1){top:16px} .pentagrama .linea:nth-child(2){top:24px}
+  .pentagrama .linea:nth-child(3){top:32px} .pentagrama .linea:nth-child(4){top:40px}
+  .pentagrama .linea:nth-child(5){top:48px}
+  .aguja{position:absolute; top:8px; width:2px; height:48px; background:var(--amber); opacity:.85; animation:barrer 3.4s cubic-bezier(.4,0,.2,1) .3s both}
+  .nota-suelta{position:absolute; top:26px; width:12px; height:9px; border-radius:50%; background:var(--accent); transform:rotate(-18deg)}
+  @keyframes barrer{from{left:0} to{left:calc(100% - 2px)}}
 
-Perdóname. Voy a poner más de mi parte para avisarte las cosas y cuidar mejor nuestra comunicación, porque te quiero y valoro muchísimo lo nuestro. ❤️</textarea><button class="primary" onclick="go(4)">Continuar ❤️</button></section>
-<section class="screen" id="s4"><div class="center"><img class="photo" src="foto.jpg" alt="Abigail"><h1>Gracias por estar conmigo, Abigail.</h1><p>Prometo seguir aprendiendo, comunicarme mejor y cuidar lo que tenemos.</p><div class="card"><div class="script">Te quiero mucho</div><div style="font-size:42px">❤️</div></div><button class="primary" onclick="go(5)">Ver mensaje final ✨</button></div></section>
-<section class="screen" id="s5"><div class="center"><span class="badge">Listo para enviar</span><h1>Ahora sí… ❤️</h1><img class="photo" src="foto.jpg" alt="Abigail"><button class="primary" onclick="sendWA()">💚 Enviar por WhatsApp</button><button class="ghost" onclick="copyMsg()">Copiar mensaje</button><p class="small">WhatsApp se abrirá con el mensaje preparado.</p></div></section>
-</main><script>let c=1;function go(n){document.getElementById('s'+c).classList.remove('active');c=n;document.getElementById('s'+c).classList.add('active');scrollTo(0,0)}function sendWA(){location.href='https://wa.me/?text='+encodeURIComponent(document.getElementById('msg').value)}async function copyMsg(){try{await navigator.clipboard.writeText(document.getElementById('msg').value);alert('Mensaje copiado ❤️')}catch(e){alert('Selecciona y copia el mensaje.')}}</script></body></html>
+  .eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0}
+  h1{
+    font-family:var(--serif); font-weight:600; font-size:clamp(38px,10.5vw,62px); overflow-wrap:break-word;
+    line-height:1.02; letter-spacing:-.02em; margin:14px 0 0; text-wrap:balance;
+  }
+  h1 em{font-style:italic; color:var(--accent)}
+  .entrada p{margin:18px 0 0; font-size:19px; color:var(--ink)}
+  .entrada p.suave{color:var(--muted); font-size:17px}
+
+  section{border-top:1px solid var(--rule); padding-top:24px; display:flex; flex-direction:column; gap:14px}
+  section h2{font-family:var(--serif); font-weight:600; font-size:26px; letter-spacing:-.01em; margin:0; line-height:1.2}
+  section p{margin:0}
+
+  .agenda{list-style:none; margin:6px 0 0; padding:20px; background:var(--surface); border:1px solid var(--rule); border-radius:4px; display:flex; flex-direction:column; gap:16px; box-shadow:0 1px 0 var(--shadow)}
+  .agenda li{display:grid; grid-template-columns:5.5rem 1fr; gap:4px 14px; align-items:baseline}
+  .agenda .cuando{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+  .agenda .que{font-size:17px}
+  .agenda .nota{grid-column:2; font-size:14px; color:var(--muted)}
+  .agenda li.tachado .que{text-decoration:line-through; text-decoration-color:var(--accent); text-decoration-thickness:2px; color:var(--muted)}
+  .agenda li.tachado .nota{color:var(--accent)}
+
+  .promesas{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:16px}
+  .promesas li{padding-left:20px; border-left:2px solid var(--accent-soft); position:relative}
+  .promesas li::before{content:""; position:absolute; left:-4px; top:.62em; width:6px; height:6px; border-radius:50%; background:var(--accent)}
+  .promesas strong{font-weight:700}
+
+  .cita{font-family:var(--serif); font-size:23px; line-height:1.35; margin:0; text-wrap:balance}
+
+  .opciones{display:flex; flex-direction:column; gap:10px; margin-top:4px}
+  .opciones button{
+    font-family:var(--sans); font-size:16px; font-weight:500; text-align:left;
+    padding:15px 18px; border:1px solid var(--rule); border-radius:3px;
+    background:var(--surface); color:var(--ink); cursor:pointer;
+    transition:border-color .18s ease, transform .18s ease, background .18s ease;
+  }
+  .opciones button:hover{border-color:var(--accent); transform:translateX(3px)}
+  .opciones button[aria-pressed="true"]{border-color:var(--accent); background:var(--accent-soft)}
+  button:focus-visible,a:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+
+  .respuesta{margin:0; min-height:1.6em; font-family:var(--serif); font-size:20px; line-height:1.4; color:var(--accent)}
+  .wa{display:none; align-self:flex-start; font-family:var(--mono); font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); text-decoration:none; border-bottom:2px solid var(--accent); padding-bottom:3px}
+  .wa.visible{display:inline-block}
+
+  .firma{border-top:1px solid var(--rule); padding-top:24px; display:flex; flex-direction:column; gap:10px}
+  .firma .cierre{font-family:var(--serif); font-size:28px; line-height:1.2; margin:0}
+  .firma .pie{font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:0}
+
+  .aparece{animation:subir .7s ease both}
+  .aparece:nth-child(1){animation-delay:.05s} .aparece:nth-child(2){animation-delay:.13s}
+  .aparece:nth-child(3){animation-delay:.21s} .aparece:nth-child(4){animation-delay:.29s}
+  .aparece:nth-child(5){animation-delay:.37s} .aparece:nth-child(6){animation-delay:.45s}
+  @keyframes subir{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
+  @media (prefers-reduced-motion:reduce){
+    .aparece,.aguja{animation:none}
+    .aguja{left:calc(100% - 2px)}
+    .opciones button{transition:none}
+  }
+</style>
+</head>
+<body>
+<main class="hoja">
+  <header class="entrada aparece">
+    <div class="pentagrama" aria-hidden="true">
+      <span class="linea"></span><span class="linea"></span><span class="linea"></span><span class="linea"></span><span class="linea"></span>
+      <span class="nota-suelta" style="left:18%"></span>
+      <span class="nota-suelta" style="left:41%; top:34px"></span>
+      <span class="nota-suelta" style="left:63%; top:22px"></span>
+      <span class="aguja"></span>
+    </div>
+    <p class="eyebrow">Una disculpa, sin excusas</p>
+    <h1>Perdón, <em>Abigail</em>.</h1>
+    <p>Me fui a ensayar y no te avisé. Por eso se nos cayó la salida, y eso fue mi culpa, no de la casualidad.</p>
+    <p class="suave">No te escribo esto para quedar bien. Te lo escribo porque quiero que veas que sí entendí qué fue lo que hice.</p>
+  </header>
+
+  <section class="aparece">
+    <p class="eyebrow">Lo que pasó</p>
+    <h2>Puse el ensayo encima de ti sin preguntarte.</h2>
+    <ul class="agenda">
+      <li>
+        <span class="cuando">Tarde</span>
+        <span class="que">Me metí al ensayo. Se alargó.</span>
+      </li>
+      <li class="tachado">
+        <span class="cuando">Después</span>
+        <span class="que">Nuestra salida</span>
+        <span class="nota">la cancelé yo, con mi silencio</span>
+      </li>
+      <li>
+        <span class="cuando">Toda la tarde</span>
+        <span class="que">Tú, esperando un mensaje que nunca te mandé.</span>
+      </li>
+    </ul>
+    <p>Tenía el celular en la mano varias veces. Un mensaje de diez segundos te habría ahorrado toda la tarde. No lo mandé, y eso no tiene defensa.</p>
+  </section>
+
+  <section class="aparece">
+    <p class="eyebrow">Lo que entiendo</p>
+    <h2>El problema no fue el ensayo.</h2>
+    <p>Fue que te dejé esperando sin saber nada. Fue que acomodaste tu día alrededor de un plan conmigo y yo lo cambié sin consultarte. Fue que te enteraste tarde, y por eso ya no dio tiempo de nada.</p>
+    <p class="cita">Si te sentiste en segundo lugar, no te lo estás inventando. Así se vio desde donde estabas tú.</p>
+  </section>
+
+  <section class="aparece">
+    <p class="eyebrow">Lo que voy a hacer</p>
+    <h2>Tres cosas, concretas.</h2>
+    <ul class="promesas">
+      <li><strong>Te aviso en cuanto sepa.</strong> No cuando ya empezó el ensayo: cuando me lo dicen. Aunque sea un mensaje de una línea.</li>
+      <li><strong>Si algo se atraviesa con un plan nuestro, te lo pregunto antes.</strong> El plan es de los dos; no me toca cambiarlo solo.</li>
+      <li><strong>Te repongo la salida con fecha.</strong> No un “un día de estos”. Tú dices el día y ahí voy a estar, sin ensayo de por medio.</li>
+    </ul>
+  </section>
+
+  <section class="aparece">
+    <p class="eyebrow">Tú eliges</p>
+    <h2>¿A dónde te llevo para reponerlo?</h2>
+    <div class="opciones" id="opciones">
+      <button type="button" data-respuesta="Cena entonces. Yo aparto la mesa y llego temprano, para variar.">Una cena, tranquilos</button>
+      <button type="button" data-respuesta="Cine. Tú escoges la película, aunque me toque la que sé que vas a elegir.">Al cine, tú escoges</button>
+      <button type="button" data-respuesta="La salida que quedó pendiente, tal cual la habíamos planeado. Se la debo al día que arruiné.">La salida que se quedó pendiente</button>
+      <button type="button" data-respuesta="Entonces dime tú. Lo que se te antoje, el día que tú digas.">Algo que se te antoje a ti</button>
+    </div>
+    <p class="respuesta" id="respuesta" role="status" aria-live="polite"></p>
+    <a class="wa" id="wa" href="#" target="_blank" rel="noopener">Contestarme por WhatsApp</a>
+  </section>
+
+  <footer class="firma aparece">
+    <p class="cierre">No quiero que se te olvide. Quiero que se me quite la costumbre.</p>
+    <p>Gracias por leer hasta aquí, Abigail. Perdón, de verdad.</p>
+    <p class="pie">Hecho para ti, y para nadie más</p>
+  </footer>
+</main>
+
+<script>
+  (function(){
+    var opciones = document.getElementById('opciones');
+    var respuesta = document.getElementById('respuesta');
+    var wa = document.getElementById('wa');
+    var tel = (new URLSearchParams(location.search).get('tel') || '').replace(/[^0-9]/g,'');
+
+    opciones.addEventListener('click', function(e){
+      var boton = e.target.closest('button');
+      if(!boton) return;
+      Array.prototype.forEach.call(opciones.querySelectorAll('button'), function(b){
+        b.setAttribute('aria-pressed', String(b === boton));
+      });
+      respuesta.textContent = boton.dataset.respuesta;
+      if(tel){
+        wa.href = 'https://wa.me/' + tel + '?text=' + encodeURIComponent('Leí tu página. Elijo: ' + boton.textContent.trim());
+        wa.classList.add('visible');
+      }
+    });
+  })();
+</script>
+</body>
+</html>
